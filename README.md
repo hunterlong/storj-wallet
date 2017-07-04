@@ -10,6 +10,7 @@ This wallet is locked to the Storj Token contract address: `0xB64ef51C888972c908
 - Send and Receive Ethereum (ETH)
 - Send a Receive STORJ tokens. ([0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC](https://etherscan.io/address/0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC))
 - Set custom Gas Price for transactions
+- Portfolio value for Storj and Ethereum in USD
 - Copy address to clipboard when clicked
 - Transaction ID with etherscan URL once transaction is submitted
 - Check for Updates button (in About - bottom right)
