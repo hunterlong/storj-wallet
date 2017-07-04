@@ -30,11 +30,11 @@ This Storj Wallet will allow you to set a custom Gas Price if you need to change
 
 # Source Code Auditing
 Feel free to look at what this application is doing. Storj Wallet was built in electron, jquery, bootstrap, and uses ether.js for decrypting wallets. Below you'll find the main functionality of the application.
-- [StorjToken Contract](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L20)
-- [Send Ethereum Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L251)
-- [Send Storj Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L297)
-- [Decrypting Keystore JSON](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L213)
-- [Using Private Key](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L100)
+- [StorjToken Contract](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L19)
+- [Send Ethereum Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L274)
+- [Send Storj Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L322)
+- [Decrypting Keystore JSON](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L232)
+- [Using Private Key](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L119)
 
 # License
 This wallet is for the Storj community to make life 2% easier for us ERC20 token holders. If you have any fixes or updates, please submit a PR. That'd be awesome! This wallet was NOT created by Storj, so take this as unofficial but useable. Source code is MIT, make your Storj ERC20 Token experience decentralized!
