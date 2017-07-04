@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Storj Wallet</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="draggable"></div>
+
+    <button type="button" onclick="QuitAppButton();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    <img src="images/storj.jpg" class="logo">
+
+    <div class="options text-center">
+        <button class="btn btn-link" onclick="UseKeystore();">Use Keystore JSON</button>
+        <button class="btn btn-link" onclick="UsePrivateKey();">Use Private Key</button>
+        <button class="btn btn-link" onclick="OpenMyEtherWallet();">Create New Wallet</button>
+    </div>
+
+    <div class="row walletInfo hidden">
+
+        <div class="col-xs-4 col-xs-offset-2 coinBox">
+            <b id="storjbal">0.0000</b>STORJ
+        </div>
+
+        <div class="col-xs-4 coinBox">
+            <b id="ethbal">0.0000</b>ETH
+        </div>
+
+    </div>
+
+    <div id="addressArea" class="row hidden">
+        <span class="myaddress" onclick="CopyAddress();">0x</span>
+    </div>
+
+    <div id="walletActions" class="row hidden">
+
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#storjmodal" onclick="UpdateTokenFeeETH();">
+            Send Storj
+          </button>
+
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ethermodal" onclick="UpdateAvailableETH();">
+            Send Ether
+          </button>
+
+    </div>
+
+
+    <div class="walletInput col-xs-7 col-xs-offset-3">
+
+        <div id="keystoreupload" class="hidden">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Keystore JSON File</label>
+                <button onclick="OpenKeystoreFile();">Open Keystore File</button>
+            </div>
+            <div class="form-group">
+                <label for="walletpass">Wallet Password</label>
+                <input type="password" class="form-control" id="keystorewalletpass" placeholder="Ethereum Wallet Keystore Password">
+            </div>
+            <button type="submit" class="btn btn-default" id="keystorebtn" onclick="UnlockWalletKeystore();">Open</button> <p class="errorInfo text-info pull-right" id="keystorejsonerror">Incorrect Password for Keystore Wallet</p>
+        </div>
+
+        <div id="privatekey" class="hidden">
+            <div class="form-group">
+                <label for="walletpass">Wallet Private Key</label>
+                <input type="password" class="form-control" id="privatepass" placeholder="Ethereum Private Key">
+            </div>
+            <button type="submit" class="btn btn-default" onclick="OpenPrivateKey();">Open</button> <p class="errorInfo text-info pull-right" id="privatekeyerror">Invalid Ethereum Wallet Private Key</p>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <link rel="stylesheet" href="main.css">
+
+
+    <script>
+        // You can also require other files to run in this process
+        require('./renderer.js')
+    </script>
+
+
+
+
+    <div class="modal fade" id="ethermodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Send Ethereum</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" id="send_ether_to" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0x0000000000000000000000000000000000000000">
+                            <span class="input-group-addon">Address</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" id="send_ether_amount" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0.0" onkeyup="CheckETHAvailable();">
+                            <span class="input-group-addon">ETH</span>
+                        </div>
+                        <p class="help-block"><u class="ethspend">0.0</u> ETH Available | Gas Limit: 21000</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default">Gas Price: <input id="ethgasprice" type="number" value="21" style="width: 40px;" onchange="GetEthGas();" min="5" max="50"> gwei</button>
+                        <button type="button" class="btn btn-default">Fee: <input id="ethtxfee" type="text" value="0.00044" readonly style="width: 75px;" min="5" max="50"> ETH</button>
+                    </div>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="sendethbutton" class="btn btn-primary" onclick="SendEthereum();" disabled>Send ETH</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="storjmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Send STORJ Coin</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" id="send_to_token" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0x0000000000000000000000000000000000000000">
+                            <span class="input-group-addon">Address</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" id="send_amount_token" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0.0" onkeyup="CheckTokenAvailable();">
+                            <span class="input-group-addon">STORJ</span>
+                        </div>
+                        <p class="help-block"><u class="storjspend">0.0</u> STORJ Available | <u class="ethavailable">0.0</u> ETH Available | Gas Limit: 65000</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default">Gas Price: <input id="tokengasprice" type="number" value="21" style="width: 40px;" onchange="GetTokenGas();" min="5" max="50"> gwei</button>
+                        <button type="button" class="btn btn-default">Fee: <input id="tokentxfee" type="text" value="0.00115" readonly style="width: 75px;"> ETH</button>
+                    </div>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="sendtokenbutton" class="btn btn-primary" onclick="SendToken();" disabled>Send STORJ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="modal fade" id="aboutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">About Storj Wallet</h4>
+                </div>
+                <div class="modal-body">
+
+                  A simple Ethereum Wallet based on Storj ERC20 Token. Send a Receive ETH and Storj with ease and security. Ethereum wallets are decrypted and raw transactions are signed locally. Raw Transactions are sent directly to EtherScan.io. This application is not an official release from Storj, just a opensource wallet for Storj Token holders. Wallet Private Keys are kept on your local machine, everytime you want to use this wallet you must re-use the Keystore JSON or Private Key for your wallet.
+
+                    <p></p>
+
+                    <a href="#" onclick="CheckForUpdates()">Check for Updates</a> | <a href="#" onclick="OpenGithubRepo()">Storj Wallet Github</a> | Developed by <a href="#" onclick="OpenHunterGithub()">Hunter Long</a>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="modal fade" id="trxsentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Transaction Sent</h4>
+      </div>
+      <div class="modal-body text-center">
+        You sent <u id="senttxamount">0.0233</u> <span id="txtype">ETH</span> to <b id="txtoaddress">0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC</b>
+
+        <p class="txidLink text-primary" onclick="OpenEtherScan('0x31b2c588cbf74bec84491eb4ec8423cd13742f7d90315693771b6699c042eba5')">0x31b2c588cbf74bec84491eb4ec8423cd13742f7d90315693771b6699c042eba5</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <span class="about" data-toggle="modal" data-target="#aboutmodal">About v0.0.1</span>
+
+</body>
+
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</html>

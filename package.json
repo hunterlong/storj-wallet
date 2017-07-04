@@ -1,0 +1,39 @@
+{
+    "name": "storj-wallet",
+    "version": "0.0.1",
+    "description": "A minimal Ethereum wallet for Storj",
+    "author": "Hunter Long <info@socialeck.com>",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
+    },
+    "build": {
+        "appId": "com.storjwallet",
+        "productName": "Storj Wallet",
+        "mac": {
+            "category": "your.app.category.type"
+        },
+        "linux": {
+            "target": [
+                "deb"
+            ]
+        },
+        "win": {}
+    },
+    "repository": "https://github.com/electron/electron-quick-start",
+    "keywords": [
+        "storj",
+        "storj-wallet"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "~1.6.2",
+        "electron-builder": "^19.11.1"
+    },
+    "dependencies": {
+        "clipboardy": "^1.1.4",
+        "ethers": "^2.1.1"
+    }
+}
