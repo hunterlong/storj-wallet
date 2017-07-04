@@ -27,6 +27,7 @@ This Storj Wallet will allow you to set a custom Gas Price if you need to change
 
 # Source Code Auditing
 Feel free to look at what this application is doing. Storj Wallet was built in electron, jquery, bootstrap, and uses ether.js for decrypting wallets. Below you'll find the main functionality of the application.
+
 - [StorjToken Contract](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L19)
 - [Send Ethereum Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L274)
 - [Send Storj Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L322)
