@@ -21,17 +21,9 @@ None of your wallet information is sent to any server. This wallet uses [ether-j
 <img align="left" width="520" src="https://i.imgur.com/Ujp0Gt4.png"><h3>Transactions</h3>
 This Storj Wallet will allow you to set a custom Gas Price if you need to change the price. By default it is set to *21* gwei. Minimum is 5 gwei. The gas limit on a normal Ether transaction is *12000*. The gas limit on sending Storj Tokens is *65000*. 
 
-<h3>Source Code Auditing</h3>
-Feel free to look at what this application is doing. Storj Wallet was built in electron, jquery, bootstrap, and uses ether.js for decrypting wallets. Below you'll find the main functionality of the application.
-- [StorjToken Contract](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L19)
-- [Send Ethereum Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L274)
-- [Send Storj Transaction](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L322)
-- [Decrypting Keystore JSON](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L232)
-- [Using Private Key](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L119)
+<img align="left" width="420" src="https://i.imgur.com/9P99Cym.png">
 
-<img align="center" width="520" src="https://i.imgur.com/9P99Cym.png">
-
-<img align="center" width="520" src="https://i.imgur.com/8JWbfeF.png">
+<img align="right" width="420" src="https://i.imgur.com/8JWbfeF.png">
 
 # Source Code Auditing
 Feel free to look at what this application is doing. Storj Wallet was built in electron, jquery, bootstrap, and uses ether.js for decrypting wallets. Below you'll find the main functionality of the application.
