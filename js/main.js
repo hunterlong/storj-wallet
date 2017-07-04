@@ -371,9 +371,10 @@ function SendToken(callback) {
     var price = parseInt($("#tokengasprice").val()) * 1000000000;
 
     if (to != '' && amount != '' && parseFloat(amount) <= tokenBalance) {
+        var targetAddress = ethers.utils.getAddress(to);
         myWallet.provider = new ethers.providers.getDefaultProvider(false);
         tokenContract = new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, myWallet);
-        tokenContract.transfer(to, (parseFloat(amount) * 100000000), {
+        tokenContract.transfer(targetAddress, (parseFloat(amount) * 100000000), {
             gasPrice: price,
             gasLimit: 65000,
         }).then(function(txid) {
