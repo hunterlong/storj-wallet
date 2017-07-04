@@ -37,6 +37,13 @@ Feel free to look at what this application is doing. Storj Wallet was built in e
 - [Decrypting Keystore JSON](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L232)
 - [Using Private Key](https://github.com/hunterlong/storj-wallet/blob/master/js/main.js#L119)
 
+### Build
+You can compile this electron application on your own.
+- `git clone https://github.com/hunterlong/storj-wallet`
+- `cd storj-wallet`
+- `npm install`
+- `npm start`
+
 # License
 This wallet is for the Storj community to make life 2% easier for us ERC20 token holders. If you have any fixes or updates, please submit a PR. That'd be awesome! This wallet was NOT created by Storj, so take this as unofficial but useable. Source code is MIT, make your Storj ERC20 Token experience decentralized!
 
