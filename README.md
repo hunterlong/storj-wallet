@@ -25,7 +25,7 @@ This Storj Wallet will allow you to set a custom Gas Price if you need to change
 
 <img align="right" width="420" src="https://i.imgur.com/8JWbfeF.png">
 
-# Source Code Auditing
+<h3>Source Code Auditing</h3>
 Feel free to look at what this application is doing. Storj Wallet was built in electron, jquery, bootstrap, and uses ether.js for decrypting wallets. Below you'll find the main functionality of the application.
 <p></p>
 
