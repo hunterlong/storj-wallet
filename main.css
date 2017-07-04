@@ -30,6 +30,21 @@ BODY {
     display: none;
 }
 
+.portfolio {
+    font-size: 11pt;
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    color: #bfbfbf;
+    display: none;
+}
+
+.portfolio SPAN {}
+
+.miniprice {
+    font-size: 8pt;
+}
+
 .txidLink {
     margin-top: 10px;
     cursor: pointer;

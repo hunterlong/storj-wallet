@@ -13,6 +13,9 @@ var tokenBalance = 0;
 var ethBalance = 0;
 var version = "0.0.1";
 
+var storjUSD = 0;
+var etherUSD = 0;
+
 var provider = new providers.EtherscanProvider(false);
 
 var tokenContract;
@@ -41,6 +44,43 @@ function OpenHunterGithub() {
 function OpenMyEtherWallet() {
   shell.openExternal('https://www.myetherwallet.com')
 }
+
+function StorjPrice() {
+  var api = "https://api.coinmarketcap.com/v1/ticker/storj/";
+  $.get(api, function(data, status){
+    storjUSD = parseFloat(data[0]['price_usd']);
+  });
+}
+
+function EtherPrice() {
+  var api = "https://api.coinmarketcap.com/v1/ticker/ethereum/";
+  $.get(api, function(data, status){
+    etherUSD = parseFloat(data[0]['price_usd']);
+  });
+}
+
+UpdatePricing();
+
+function UpdatePricing() {
+  EtherPrice();
+  StorjPrice();
+}
+
+
+function UpdatePortfolio() {
+  setTimeout(function() {
+    var totalStorj = tokenBalance * storjUSD;
+    var totalEth = ethBalance * etherUSD;
+    var totalPort = totalStorj + totalEth;
+    $("#portStorjUSD").html("($"+storjUSD+")");
+    $("#portEthUSD").html("($"+etherUSD+")");
+    $("#portfolioStorj").html(totalStorj.toFixed(2))
+    $("#portfolioEth").html(totalEth.toFixed(2))
+    $("#portfolioTotal").html(totalPort.toFixed(2))
+    $(".portfolio").fadeIn('fast');
+  }, 3500);
+}
+
 
 function CheckForUpdates() {
   var versionFile = "https://raw.githubusercontent.com/hunterlong/storj-wallet/master/VERSION";
@@ -81,6 +121,10 @@ function CheckTokenAvailable() {
 setInterval(function() {
     if (myWallet) updateBalance();
 }, 5000);
+
+setInterval(function() {
+    if (myWallet) UpdatePortfolio();
+}, 30000);
 
 function UseKeystore() {
     HideButtons();
@@ -131,6 +175,7 @@ function OpenPrivateKey() {
         }
         SuccessAccess();
         updateBalance();
+        UpdatePortfolio();
     } else {
       $("#privatekeyerror").show();
     }
@@ -190,7 +235,6 @@ function updateBalance() {
 
 
 var keyFile;
-
 function OpenKeystoreFile() {
     dialog.showOpenDialog(function(fileNames) {
         if (fileNames === undefined) return;
@@ -244,6 +288,7 @@ function UnlockWalletKeystore() {
                 myWallet = wallet;
                 SuccessAccess();
                 updateBalance();
+                UpdatePortfolio();
                 $("#keystorebtn").html("Decrypting...");
         });
       } else {
