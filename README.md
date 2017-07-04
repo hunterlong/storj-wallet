@@ -40,4 +40,5 @@ Feel free to look at what this application is doing. Storj Wallet was built in e
 # License
 This wallet is for the Storj community to make life 2% easier for us ERC20 token holders. If you have any fixes or updates, please submit a PR. That'd be awesome! This wallet was NOT created by Storj, so take this as unofficial but useable. Source code is MIT, make your Storj ERC20 Token experience decentralized!
 
-## Donate :bug::beer:
+### Donate :bug::beer:
+ETH/STORJ: `0x41FB95D55fB0B353A82814a876Cd0BEea2b29337`
