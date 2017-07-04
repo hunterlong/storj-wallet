@@ -4,7 +4,6 @@ This wallet is locked to the Storj Token contract address: `0xB64ef51C888972c908
 
   <img src="https://i.imgur.com/UaBV6My.png">
 
-
 ## Storj Wallet Features
 - Use Keystore JSON wallet
 - Use Private Key wallet
@@ -13,6 +12,7 @@ This wallet is locked to the Storj Token contract address: `0xB64ef51C888972c908
 - Set custom Gas Price for transactions
 - Copy address to clipboard when clicked
 - Transaction ID with etherscan URL once transaction is submitted
+- Check for Updates button (in About - bottom right)
 - Raw Transactions send to EtherScan
 
 <img align="left" width="520" src="https://i.imgur.com/sX5X6WC.png"><h3>Wallet Security</h3>
