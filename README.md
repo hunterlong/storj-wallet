@@ -21,9 +21,9 @@ None of your wallet information is sent to any server. This wallet uses [ether-j
 <img align="left" width="520" src="https://i.imgur.com/Ujp0Gt4.png"><h3>Transactions</h3>
 This Storj Wallet will allow you to set a custom Gas Price if you need to change the price. By default it is set to *21* gwei. Minimum is 5 gwei. The gas limit on a normal Ether transaction is *12000*. The gas limit on sending Storj Tokens is *65000*. 
 
-<img align="left" width="420" src="https://i.imgur.com/9P99Cym.png">
+<img align="right" width="420" src="https://i.imgur.com/9P99Cym.png">
 
-<img align="right" width="420" src="https://i.imgur.com/8JWbfeF.png">
+<img align="left" width="420" src="https://i.imgur.com/8JWbfeF.png">
 
 
 
